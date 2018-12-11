@@ -8,9 +8,7 @@
 #pragma comment(lib, "Winmm.lib")
 using namespace ecl;
 
-void getSomeBlocks(){
-	cout<<"\t\t\t";
-}
+
 
 class board{
 	private:
@@ -24,6 +22,10 @@ class board{
 		void generateMouse(){
 			srand(time(NULL));
 			isMouseOnTheBlock[rand()%9]=1;
+		}
+		
+		void getSomeBlocks(){
+			cout<<"\t\t\t";
 		}
 		
 	public:
@@ -53,7 +55,7 @@ class board{
 			getSomeBlocks();
 			for(int i=0;i<9;i++){
 				if(isMouseOnTheBlock[i]==1)
-					cout<<"军阀"<<"\t";
+					cout<<"鍐涢榾"<<"\t";
 				else
 					cout<<"."<<"\t";
 				if((i+1)%3==0){
@@ -61,15 +63,20 @@ class board{
 					getSomeBlocks();
 				}
 			}
-			cout<<"已消灭军阀："<<score<<endl<<endl;
+			cout<<"宸叉秷鐏啗闃�"<<score<<endl<<endl;
 			getSomeBlocks();
 		}
+		
+		void gameIsEnd(){
+			getSomeBlocks();
+			cout<<"Game is Over";
+		} 
 };
 
 int main()
 {
 	system("color a");
-	PlaySound("musicmainmenu.wav",NULL,SND_ASYNC);
+	//PlaySound("musicmainmenu.wav",NULL,SND_ASYNC);
 	board Coard;
 	Date timer;
 	char ch;
@@ -99,7 +106,6 @@ int main()
 		cout<<60-timer.getTime()+begin<<" second(s) left."<<endl;
 		usleep(1000);
 	}
-	getSomeBlocks();
-	cout<<"Game is Over";
+	Coard.gameIsEnd();
 	return 0;
 }
